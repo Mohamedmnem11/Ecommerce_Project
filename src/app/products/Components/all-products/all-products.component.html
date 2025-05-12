@@ -1,0 +1,17 @@
+
+<div class="my-2 w-25">
+ <app-selector [data]="categories"  [title]="'Category'"  (selected)="filtirCategory($event)"></app-selector>
+</div>
+
+<div class="row" *ngIf="products.length > 0; else loading">
+  <div class="col-md-3 col-sm-12" *ngFor="let product of products" >
+    <app-product [ProdItem]="product" (item)="addEvent($event)"></app-product>
+  </div>
+</div>
+
+
+<ng-template #loading class="d-flex justify-content-center align-items-center">
+  <p>Loading products... <app-spinner></app-spinner> </p>
+</ng-template>
+
+

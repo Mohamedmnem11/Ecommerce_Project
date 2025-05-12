@@ -1,0 +1,106 @@
+<!--
+<table class="table table-striped text-center " >
+  <thead class="text-bg-primary ">
+    <tr>
+
+
+      <th scope="col">index</th>
+      <th scope="col">product</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="">
+
+        <tr *ngFor="let card of cardProduct;let i=index">
+        <td scope="row">{{ i+1 }}</td>
+        <td><img src="{{ card.item.image }}" class="img-thumbnail " style="height: 70px; width: 100px;" alt=""></td>
+        <td>{{ card.item.title }}</td>
+        <td>{{ card.item.price }}</td>
+
+        <td>
+          <div class=" d-flex justify-content-between">
+
+            <button (click)="getPlus(i)" class="btn btn-primary">+</button>
+
+            <input type="text" (change)="updateStorage()" [(ngModel)]=" card.quantity">
+            <button (click)="getMinus(i)" class="btn btn-primary">-</button>
+          </div>
+
+        </td>
+
+        <td>{{ (card.quantity* card.item.price).toFixed(2)}} LE</td>
+
+
+        <td>
+          <button (click)="deleteItems(i)" class="btn btn-danger">Delete</button>
+        </td>
+
+
+      </tr>
+
+
+  </tbody>
+  <footer>
+    <tr>
+      <td></td>
+      <td></td>
+
+      <td></td>
+      <td></td>
+      <td></td>
+      <td> Total : {{total.toFixed(2) }} LE</td>
+      <td><button class="btn btn-success" (click)="addCard()" >Order Now</button></td>
+    </tr>
+  </footer>
+</table> -->
+
+
+<div class="table-responsive my-5">
+  <table class="table table-striped text-center shadow-sm rounded overflow-hidden">
+    <thead class="text-white">
+      <tr class="table-dark">
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let card of cardProduct; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>
+          <img [src]="card.item.image" class="img-thumbnail rounded" style="height: 70px; width: 100px;" alt="Product Image">
+        </td>
+        <td class="fw-bold text-primary">{{ card.item.title }}</td>
+        <td class="fw-bold text-success">${{ card.item.price }}</td>
+        <td>
+          <div class="d-flex justify-content-center align-items-center gap-2">
+            <button (click)="getPlus(i)" class="btn btn-sm btn-outline-primary">+</button>
+            <input type="number" class="form-control text-center" style="width: 60px;" (change)="updateStorage()" [(ngModel)]="card.quantity" min="1">
+            <button (click)="getMinus(i)" class="btn btn-sm btn-outline-primary">-</button>
+          </div>
+        </td>
+        <td class="fw-bold text-danger">${{ (card.quantity * card.item.price).toFixed(2) }}</td>
+        <td>
+          <button (click)="deleteItems(i)" class="btn btn-sm btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot class="bg-light fw-bold">
+      <tr>
+        <td colspan="5" class="text-end">Total:</td>
+        <td class="text-success">${{ total.toFixed(2) }}</td>
+        <td>
+          <button class="btn btn-success btn-sm w-100" (click)="addCard()">Order Now</button>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
